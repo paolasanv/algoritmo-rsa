@@ -56,7 +56,14 @@ int64_t mcd(uint64_t a, uint64_t b){
 
 /** Nos dice si un número es primo o no */
 bool esPrimo(uint64_t n){
+	if(n <= 1)
+		return false;
 
+	for(uint64_t i = 2; i*i <= n; i++){
+		if(n % i == 0)
+			return false;
+	}
+	return true;
 }
 
 /** Nos dice si 2 números son coprimos o primos relativos */
@@ -70,7 +77,17 @@ bool coprimos(uint64_t a, uint64_t b){
 
 /** Nos regresa la función phi de euler de un número n */
 uint64_t phiEuler(uint64_t n){
-
+	uint64_t res = n;
+	for(uint64_t i = 2; i*i <= n; i++){
+		if(n%i == 0){
+			while(n%i == 0)
+				n /= i;
+			res -= res/i;
+		}
+	}
+	if(n > 1)
+		res -= res/n;
+	return res;
 }
 
 /** Función auxiliar para generar números aleatorios pequeños */
