@@ -37,7 +37,13 @@ int64_t mcde(uint64_t a, uint64_t b, int64_t &x, int64_t &y){
 /** Encuentra el inverso multiplicativo módulo M. Es mejor obtenerlo
     con el algoritmo de euclides extendido */
 uint64_t invMult(uint64_t a, uint64_t mod){
-
+	uint64_t x,y;
+	uint64_t m = mcde(a, mod, &x, &y);
+	if(m != 1){
+		return -1; // No hay inverso
+	} else {
+		return (x%mod + mod) % mod
+	}
 }
 
 /** Encuentra el máximo común divisor entre a y b. */
@@ -55,7 +61,11 @@ bool esPrimo(uint64_t n){
 
 /** Nos dice si 2 números son coprimos o primos relativos */
 bool coprimos(uint64_t a, uint64_t b){
-
+	uint64_t m = mcd(a,b);
+	if(m != 1){
+		return false;
+	}
+	return true;
 }
 
 /** Nos regresa la función phi de euler de un número n */
