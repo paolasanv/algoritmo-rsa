@@ -26,8 +26,8 @@ int64_t mcde(uint64_t a, uint64_t b, int64_t &x, int64_t &y){
 		return b;
 	}
 
-	uint64_t x1, y1;
-	uint64_t mcd = mcde(b%a, a, x1, y1);
+	int64_t x1, y1;
+	int64_t mcd = mcde(b%a, a, x1, y1);
 
 	x = y1 - (b/a) * x1;
 	y = x1;
@@ -37,7 +37,7 @@ int64_t mcde(uint64_t a, uint64_t b, int64_t &x, int64_t &y){
 /** Encuentra el inverso multiplicativo módulo M. Es mejor obtenerlo
     con el algoritmo de euclides extendido */
 uint64_t invMult(uint64_t a, uint64_t mod){
-	uint64_t x,y;
+	int64_t x,y;
 	uint64_t m = mcde(a, mod, &x, &y);
 	if(m != 1){
 		return -1; // No hay inverso
