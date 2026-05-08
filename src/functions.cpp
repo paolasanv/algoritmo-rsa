@@ -7,7 +7,7 @@
 uint64_t potenciaMod(uint64_t a, uint64_t b, uint64_t mod){
     uint64_t res = 1;
     while(b >= 1){
-	    if(n%2 != 0){
+	    if(b%2 != 0){
 		    res = (res * a) % mod;
 		    b--;
 	    } else {
@@ -38,11 +38,11 @@ int64_t mcde(uint64_t a, uint64_t b, int64_t &x, int64_t &y){
     con el algoritmo de euclides extendido */
 uint64_t invMult(uint64_t a, uint64_t mod){
 	int64_t x,y;
-	uint64_t m = mcde(a, mod, &x, &y);
+	uint64_t m = mcde(a, mod, x, y);
 	if(m != 1){
 		return -1; // No hay inverso
 	} else {
-		return (x%mod + mod) % mod
+		return (x%mod + mod) % mod;
 	}
 }
 
