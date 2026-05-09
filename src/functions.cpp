@@ -6,14 +6,13 @@
 /** Eleva a a la b recortando con mod */
 uint64_t potenciaMod(uint64_t a, uint64_t b, uint64_t mod){
     uint64_t res = 1;
+    a %= mod;
     while(b >= 1){
-	    if(b%2 != 0){
-		    res = (res * a) % mod;
-		    b--;
-	    } else {
-		    a = (a * a) % mod;
-		    b /= 2;
-	    }
+	    if(b & 1){
+		    res = ((__int128)res * a) % mod;
+	    } 
+	    a = ((__int128)a * a) % mod;
+	    b >>= 1;
     }
     return res;
 }
@@ -38,11 +37,12 @@ int64_t mcde(uint64_t a, uint64_t b, int64_t &x, int64_t &y){
     con el algoritmo de euclides extendido */
 uint64_t invMult(uint64_t a, uint64_t mod){
 	int64_t x,y;
-	uint64_t m = mcde(a, mod, x, y);
+	int64_t m = mcde(a, mod, x, y);
 	if(m != 1){
 		return -1; // No hay inverso
 	} else {
-		return (x%mod + mod) % mod;
+		int64_t imod = (int64_t) mod;		// Convierte a entero de 64 bits con signo.
+		return (uint64_t)((x%imod + imod) % imod);
 	}
 }
 
