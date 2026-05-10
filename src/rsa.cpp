@@ -5,7 +5,7 @@
 
 /** intercambiar los nombres para ejecutar el main
     solo si ya pasaron todos los test :) */
-int mmain(){
+int main(){
     uint64_t p = 2274464659;
     uint64_t q = 7208606003;
 

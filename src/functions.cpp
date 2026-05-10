@@ -9,9 +9,9 @@ uint64_t potenciaMod(uint64_t a, uint64_t b, uint64_t mod){
     a %= mod;
     while(b >= 1){
 	    if(b & 1){
-		    res = ((__int128)res * a) % mod;
+		    res = ((__uint128_t)res * a) % mod;
 	    } 
-	    a = ((__int128)a * a) % mod;
+	    a = ((__uint128_t)a * a) % mod;
 	    b >>= 1;
     }
     return res;
@@ -28,7 +28,7 @@ int64_t mcde(uint64_t a, uint64_t b, int64_t &x, int64_t &y){
 	int64_t x1, y1;
 	int64_t mcd = mcde(b%a, a, x1, y1);
 
-	x = y1 - (b/a) * x1;
+	x = (__int128)y1 - ((__int128)b/a) * x1;
 	y = x1;
 	return mcd;
 }
@@ -41,8 +41,9 @@ uint64_t invMult(uint64_t a, uint64_t mod){
 	if(m != 1){
 		return -1; // No hay inverso
 	} else {
-		int64_t imod = (int64_t) mod;		// Convierte a entero de 64 bits con signo.
-		return (uint64_t)((x%imod + imod) % imod);
+		__int128 imod = (__int128) mod;
+		__int128 ix = (__int128) x;
+		return (uint64_t)((ix%imod + imod) % imod);
 	}
 }
 
