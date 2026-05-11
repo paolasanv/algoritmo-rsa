@@ -21,9 +21,9 @@ Entidad::Entidad(std::string nombre, uint64_t p, uint64_t q)
 	    uint64_t n = p * q;
 	    uint64_t phi = (p-1)*(q-1);
 
-	    uint64_t e = 2;
+	    uint64_t e = 65537; // Por defecto
 	    while(!coprimos(e,phi)){
-		    e++;
+		    e+=2;
 	    }
 
 	    uint64_t d = invMult(e,phi);
